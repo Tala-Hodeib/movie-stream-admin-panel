@@ -1,6 +1,6 @@
-const url1 = 'https://us-central1-nodemcu-thesis-db.cloudfunctions.net/app/adminLogin'
+//const url1 = 'https://us-central1-nodemcu-thesis-db.cloudfunctions.net/app/adminLogin'
 
-const url = 'http://localhost:3000/adminLogin'
+const url = 'http://localhost:3001/adminLogin'
 export const adminLogin = async (email, password) => {
     const response = await fetch(url, {
         method : 'POST',

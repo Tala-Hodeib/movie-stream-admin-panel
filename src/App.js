@@ -1,11 +1,3 @@
-import React, { Suspense, Component } from 'react';
-import Routes from './Routes'
-import './App.css';
 
-
-function App(props) {
-    return (
-        <Routes /> );
-}
-
+const App = (props) => props.children;
 export default App;

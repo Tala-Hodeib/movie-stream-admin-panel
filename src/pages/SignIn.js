@@ -1,9 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import Typography from '@material-ui/core/Typography'
 import Container from '@material-ui/core/Container'
+import { makeStyles } from '@material-ui/core/styles';
 import {
-    withStyles,
     Avatar,
     TextField,
     FormControlLabel,
@@ -13,91 +13,90 @@ import {
 } from '@material-ui/core'
 
 import { adminLogin } from '../api'
-import { Router, Switch, Route, Redirect, withRouter } from 'react-router-dom'
-import Dashboard from './Dashboard'
+import { useHistory } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
 
-class SignIn extends React.Component {
-    state = {
-        email: '',
-        password: '',
-        isLogined: false,
-        err: ''
-    }
-
-    handleChange = e => {
+export default function SignIn() {
+    const history = useHistory()
+    let email = ''
+    let password = ''
+    const classes = useStyles()
+    const {handleSubmit} = useForm()
+ 
+    const handleEmailChange = e => {
         e.preventDefault();
-        this.setState({
-            [e.target.name]: e.target.value
-        })
+        email = e.target.value
+        //password = e.target.value
     }
-
-    handleSubmit = async () => {
-        const { email, password } = this.state
+    const handlePasswordChange = e => {
+        e.preventDefault();
+        password = e.target.value
+        //password = e.target.value
+    }
+    const onSubmit = async (e) => {
+        //history.push('/')
         try {
             const success = await adminLogin(email, password)
-            localStorage.setItem("token", email);
-            this.setState({ isLogined: true })
-            this.props.history.push('/')
-
+            if (success) {
+                localStorage.setItem("token", email);
+                history.push('/')
+               
+            }
         } catch (err) {
             const errMessage = err.message
             alert(err)
-            this.setState({ err: errMessage })
+            // this.setState({ err: errMessage })
             // return;
         }
     }
-
-    render() {
-        const { email, password, isLogined } = this.state
-        const { classes } = this.props;
-        return (
-            <Container component="main" maxWidth="xs" >
-                <CssBaseline />
-                <div className={classes.paper}>
-                    <Avatar className={classes.avatar} />
-                    <Typography component="h1" variant="h5" >
-                        Singn in
+    return (
+        <Container component="main" maxWidth="xs" >
+            <CssBaseline />
+            <div className={classes.paper}>
+                <Avatar className={classes.avatar} />
+                <Typography component="h1" variant="h5" >
+                    Singn in
                     </Typography>
-                    <form className={classes.form} onSubmit={this.handleSubmit} >
-                        <TextField onChange={this.handleChange}
-                            value={email}
-                            variant="outlined"
-                            margin="normal"
-                            required
-                            fullWidth
-                            id="email"
-                            label="Email Address"
-                            name="email"
-                            autoComplete="email"
-                            autoFocus />
+                <form className={classes.form} >
+                    <TextField onChange={handleEmailChange}
+                        // value="email"
+                        variant="outlined"
+                        margin="normal"
+                        required
+                        fullWidth
+                        id="email"
+                        label="Email Address"
+                        name="email"
+                        autoComplete="email"
+                        autoFocus />
 
-                        <TextField onChange={this.handleChange}
-                            value={password}
-                            variant="outlined"
-                            margin="normal"
-                            required
-                            fullWidth
-                            id="password"
-                            label="Password"
-                            name="password"
-                            type="password"
-                            autoComplete="password" />
-                        <FormControlLabel
-                            control={<Checkbox value="remember" color="primary" />}
-                            label="Remember me"
-                        />
-                        <Button
-                            type="submit" fullWidth variant="contained" color="primary" className={classes.submit} >
-                            Signin
+                    <TextField onChange={handlePasswordChange}
+                        //value={password}
+                        variant="outlined"
+                        margin="normal"
+                        required
+                        fullWidth
+                        id="password"
+                        label="Password"
+                        name="password"
+                        type="password"
+                        autoComplete="password" />
+                    <FormControlLabel
+                        control={<Checkbox value="remember" color="primary" />}
+                        label="Remember me"
+                    />
+                    <Button
+                        onClick={handleSubmit(onSubmit)}
+                        type="submit" fullWidth variant="contained" color="primary" className={classes.submit} >
+                        Signin
                         </Button>
-                    </form>
-                </div>
-                <Box mt={8} >
-                    <CopyRight />
-                </Box>
-            </Container>
-        )
-    }
+                </form>
+            </div>
+            <Box mt={8} >
+                <CopyRight />
+            </Box>
+        </Container>
+    )
 }
 
 const CopyRight = () => (
@@ -107,26 +106,22 @@ const CopyRight = () => (
     </Typography>
 )
 
-const styles = theme => (
-    {
-        paper: {
-            marginTop: theme.spacing(8),
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-        },
-        avatar: {
-            margin: theme.spacing(1),
-            backgroundColor: theme.palette.secondary.main,
-        },
-        form: {
-            width: '100%', // fix IE issue
-            marginTop: theme.spacing(1),
-
-        },
-        submit: {
-            margin: theme.spacing(3, 0, 2),
-        }
-    })
-
-export default withStyles(styles)(withRouter(SignIn))
+const useStyles = makeStyles((theme) => ({
+    paper: {
+        marginTop: theme.spacing(8),
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+    },
+    avatar: {
+        margin: theme.spacing(1),
+        backgroundColor: theme.palette.secondary.main,
+    },
+    form: {
+        width: '100%', // Fix IE 11 issue.
+        marginTop: theme.spacing(1),
+    },
+    submit: {
+        margin: theme.spacing(3, 0, 2),
+    },
+}));
