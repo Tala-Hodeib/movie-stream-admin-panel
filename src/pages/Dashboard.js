@@ -12,6 +12,7 @@ function logout() {
         <button onClick={()=>logout()}>
             Logout
         </button>
+        <button onClick = {()=> history.push('/adddata')}>Add</button>
     </div>)
 }
 

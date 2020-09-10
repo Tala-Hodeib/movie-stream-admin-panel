@@ -57,7 +57,7 @@ export default function SignIn() {
                 <Typography component="h1" variant="h5" >
                     Singn in
                     </Typography>
-                <form className={classes.form} >
+                <form className={classes.form} onSubmit = {handleSubmit(onSubmit)} >
                     <TextField onChange={handleEmailChange}
                         // value="email"
                         variant="outlined"
@@ -86,7 +86,6 @@ export default function SignIn() {
                         label="Remember me"
                     />
                     <Button
-                        onClick={handleSubmit(onSubmit)}
                         type="submit" fullWidth variant="contained" color="primary" className={classes.submit} >
                         Signin
                         </Button>
