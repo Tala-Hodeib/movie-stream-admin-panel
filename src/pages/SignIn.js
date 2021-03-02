@@ -55,7 +55,7 @@ export default function SignIn() {
             <div className={classes.paper}>
                 <Avatar className={classes.avatar} />
                 <Typography component="h1" variant="h5" >
-                    Singn in
+                    Sign in
                     </Typography>
                 <form className={classes.form} onSubmit = {handleSubmit(onSubmit)} >
                     <TextField onChange={handleEmailChange}
@@ -87,7 +87,7 @@ export default function SignIn() {
                     />
                     <Button
                         type="submit" fullWidth variant="contained" color="primary" className={classes.submit} >
-                        Signin
+                        Sign in
                         </Button>
                 </form>
             </div>

@@ -7,17 +7,17 @@ import {
 } from 'react-router-dom'
 import './App.css';
 import SignIn from './pages/SignIn'
-import Dashboard from './pages/Dashboard'
+// import Dashboard from './pages/Dashboard'
 import AddDataForm from './componets/AddDataForm'
-import AddData from './componets/AddData'
+import Admin from './componets/Admin'
 
 
 const authRouth = (Component) => () => {
-    if (localStorage.getItem('token') === 'admin@test.com') {
+    // if (localStorage.getItem('token') === 'admin@test.com') {
         return <Component />
-    } else {
-        return <Redirect to='/login' />
-    }
+    // } else {
+    //     return <Redirect to='/login' />
+    // }
 }
 
 function Routes(props) {
@@ -27,17 +27,17 @@ function Routes(props) {
                 <Route path='/login'>
                     <SignIn />
                 </Route>
-                <Route path='/dashboard'>
+                {/* <Route path='/dashboard'>
                     {authRouth(Dashboard)}
-                </Route>
+                </Route> */}
                 <Route path='/dataupload'>
                     <AddDataForm />
                 </Route>
-                <Route path='/adddata'>
-                    {authRouth(AddData)}
+                <Route path='/admin'>
+                    {authRouth(Admin)}
                 </Route>
                 <Route exact path="/">
-                    <Redirect to="/dashboard" />
+                    <Redirect to="/admin" />
                 </Route>
             </Switch>
         </Router>

@@ -1,22 +1,28 @@
 import React from 'react'
-
 import {
     withStyles,
-    TableContainer, Paper, Table, TableRow, TableCell, makeStyles, TextField, RadioGroup, Radio, FormControlLabel, Button
+    TableContainer, Paper, Table, TableRow, TableCell, makeStyles, TextField, RadioGroup, Radio, FormControlLabel, Button, InputBase, InputLabel, FormControl, NativeSelect, Select, Box
 } from '@material-ui/core'
-
+import './AddData.module.css'
 import { uploadMovies } from '../api'
 import { findAllInRenderedTree } from 'react-dom/test-utils'
+import { ThemeProvider } from '@material-ui/styles';
+import { createMuiTheme } from '@material-ui/core/styles';
+import logo from './logo.png';
+import './AddData.module.css'
 
-class AddData extends React.Component {
+
+
+
+class Admin extends React.Component {
     state = {
         type: 'movie',
         title: '',
         year: '',
-        movie_id: '',
+        // movie_id: '',
         image: '',
         genres: '',
-        category: '',
+        // category: '',
         description: ''
     }
 
@@ -43,16 +49,26 @@ class AddData extends React.Component {
         } catch (error) {
             alert(error)
         }
+
     }
 
+    
     render() {
         const { classes } = this.props
+        const darkTheme = createMuiTheme({
+            palette: {
+              type: 'dark',
+            },
+          });
 
         return (
-            <div className={classes.container} >
-                <h2 className={classes.h2} > Upload the data to the server</h2>
-
-                <TableContainer className={classes.tableContainer} component={Paper}>
+           <>
+            <div className='logo'>  
+                              <img src={logo} alt='website logo'/>
+            </div>
+            <div className={classes.container}>
+                {/* <h2 className={classes.h2} > Upload the data to the server</h2> */}
+                <TableContainer  className={classes.tableContainer} component={Paper}>
                     <form onSubmit={this.handleSubmit}>
                         <Table size='small' lassName={classes.table} aria-label="simple table">
                             <TableRow  >
@@ -67,7 +83,7 @@ class AddData extends React.Component {
                                 </TableCell>
                             </TableRow>
                             <TableRow >
-                                <TableCell className={classes.boldText}>Movie Title</TableCell>
+                                <TableCell className={classes.boldText}>Title</TableCell>
                                 <TableCell align="right">
                                     <TextField
                                         onChange={this.handleChange}
@@ -76,7 +92,7 @@ class AddData extends React.Component {
                                         name="title"
                                         id="title"
                                         type="text"
-                                        label="Movie Title"
+                                        label="Title"
                                         fullWidth
                                         autoComplete="title"
                                     />
@@ -99,8 +115,8 @@ class AddData extends React.Component {
                                 </TableCell>
                             </TableRow>
                             <TableRow>
-                                <TableCell className={classes.boldText}>Movie ID</TableCell>
-                                <TableCell>
+                                {/* <TableCell className={classes.boldText}>Movie ID</TableCell> */}
+                                {/* <TableCell>
                                     <TextField type="text"
                                         onChange={this.handleChange}
                                         variant='filled'
@@ -111,18 +127,18 @@ class AddData extends React.Component {
                                         fullWidth
                                         autoComplete="movie_id"
                                     />
-                                </TableCell>
+                                </TableCell> */}
                             </TableRow>
                             <TableRow>
-                                <TableCell className={classes.boldText}>Movie Image</TableCell>
+                                <TableCell className={classes.boldText}>Image</TableCell>
                                 <TableCell>
-                                    <TextField type="text"
+                                    <input type="file"
                                         onChange={this.handleChange}
                                         variant='filled'
                                         required
                                         id="image"
                                         name="image"
-                                        label="Movie Image"
+                                        label="Image"
                                         fullWidth
                                         autoComplete="image"
                                     />
@@ -131,8 +147,29 @@ class AddData extends React.Component {
                             <TableRow>
                                 <TableCell className={classes.boldText}>Genres</TableCell>
                                 <TableCell>
-                                    <TextField type="text"
-                                        onChange={this.handleChange}
+                                <FormControl variant="filled" className={classes.formControl}>
+        <InputLabel htmlFor="filled-age-native-simple">Genre</InputLabel>
+        <Select
+          native
+        //   onChange={handleChange}
+          inputProps={{
+          }}
+        >
+          <option aria-label="None" value="" />
+          <option>Horror</option>
+          <option>Romantic</option>
+          <option>Action</option>
+          <option>Sci-Fi</option>
+          <option>Superheroes</option>
+          <option>Sitcom</option>
+          <option>Drama</option>
+          <option>Animated</option>
+          <option>Investigation</option>
+          <option>Documentaries</option>
+        </Select>
+      </FormControl>
+                                     {/* type="text" */}
+                                        {/* onChange={this.handleChange}
                                         variant='filled'
                                         required
                                         id="genres"
@@ -140,12 +177,12 @@ class AddData extends React.Component {
                                         label="Genres"
                                         fullWidth
                                         autoComplete="genres"
-                                    />
+                                    />  */}
                                 </TableCell>
                             </TableRow>
                             <TableRow>
-                                <TableCell className={classes.boldText}>Category</TableCell>
-                                <TableCell>
+                                {/* <TableCell className={classes.boldText}>Category</TableCell> */}
+                                {/* <TableCell>
                                     <TextField type="text"
                                         onChange={this.handleChange}
                                         variant='filled'
@@ -156,7 +193,7 @@ class AddData extends React.Component {
                                         fullWidth
                                         autoComplete="category"
                                     />
-                                </TableCell>
+                                </TableCell> */}
                             </TableRow>
 
                             <TableRow>
@@ -171,7 +208,7 @@ class AddData extends React.Component {
                                         name="description"
                                         multiline
                                         rows={4}
-                                        defaultValue="Description is option"
+                                        // defaultValue="Description is option"
                                         variant="outlined"
                                     />
                                 </TableCell>
@@ -179,12 +216,12 @@ class AddData extends React.Component {
                             <TableRow>
                                 <TableCell>
                                     <Button
-                                        className={classes.submit}
+                                        className= {classes.submit}
                                         type="submit"
                                         fullWidth
                                         variant='contained'
-                                        color='primary' >
-                                        Submit
+                                        color='primary' 
+                                        >Submit
                                 </Button>
                                 </TableCell>
                             </TableRow>
@@ -193,13 +230,17 @@ class AddData extends React.Component {
                     </form>
                 </TableContainer>
             </div>
+    </>
         );
     }
 }
 
 const styles = {
     container: {
+        height: "100%",
+        // backgroundColor: '#1b262c',
         marginBottom: 16,
+        marginTop: 10,
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center'
@@ -218,6 +259,6 @@ const styles = {
     submit: {
         margin: (3, 0, 2)
     }
+    
 }
-
-export default withStyles(styles)(AddData)
+export default withStyles(styles)(Admin);

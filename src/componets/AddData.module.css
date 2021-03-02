@@ -1,5 +1,9 @@
+.logo {
+
+}
 .container {
-    height: 100vh;
+        color: black;
+        height: 100%;
 }
 
 .formContainer {
