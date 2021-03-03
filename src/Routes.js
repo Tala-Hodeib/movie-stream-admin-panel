@@ -7,7 +7,7 @@ import {
 } from 'react-router-dom'
 import './App.css';
 import SignIn from './pages/SignIn'
-// import Dashboard from './pages/Dashboard'
+import Dashboard from './pages/Dashboard'
 import AddDataForm from './componets/AddDataForm'
 import Admin from './componets/Admin'
 
@@ -27,9 +27,9 @@ function Routes(props) {
                 <Route path='/login'>
                     <SignIn />
                 </Route>
-                {/* <Route path='/dashboard'>
+                <Route path='/dashboard'>
                     {authRouth(Dashboard)}
-                </Route> */}
+                </Route>
                 <Route path='/dataupload'>
                     <AddDataForm />
                 </Route>
@@ -37,7 +37,7 @@ function Routes(props) {
                     {authRouth(Admin)}
                 </Route>
                 <Route exact path="/">
-                    <Redirect to="/admin" />
+                    <Redirect to="/dashboard" />
                 </Route>
             </Switch>
         </Router>

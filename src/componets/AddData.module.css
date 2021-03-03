@@ -1,5 +1,9 @@
-.logo {
-
+.outwards {
+    margin: 0;
+    background-color: #1b262c imp !important;
+    position: absolute;
+    height: 100%;
+    width: 100%;
 }
 .container {
         color: black;

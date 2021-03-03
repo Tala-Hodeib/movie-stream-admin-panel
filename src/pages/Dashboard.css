@@ -1,0 +1,48 @@
+.container {
+    /* height: 100%;
+    width: 100%; */
+    margin: 35px;
+    position: absolute;
+}
+.logout-btn {
+    border-radius: 4px;
+    background-color: #bbe1fa;
+    border: none;
+    color: #1b262c;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+.add-btn {
+    border-radius: 4px;
+    background-color: #bbe1fa;
+    border: none;
+    color: #1b262c;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+.add-btn:hover {
+    background-color: #0f4c75;
+}
+.logout-btn:hover {
+    background-color: #0f4c75;
+}
+.btns {
+    margin-top: 200px;
+}
+.outside {
+    margin: 0;
+    background-color: #1b262c;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+}

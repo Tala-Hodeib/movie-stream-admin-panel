@@ -8,8 +8,12 @@ import { uploadMovies } from '../api'
 import { findAllInRenderedTree } from 'react-dom/test-utils'
 import { ThemeProvider } from '@material-ui/styles';
 import { createMuiTheme } from '@material-ui/core/styles';
-import logo from './logo.png';
 import './AddData.module.css'
+import AppBar from '@material-ui/core/AppBar';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
+import logo from './logo.png';
+
 
 
 
@@ -49,6 +53,9 @@ class Admin extends React.Component {
         } catch (error) {
             alert(error)
         }
+          
+       
+            
 
     }
 
@@ -60,13 +67,16 @@ class Admin extends React.Component {
               type: 'dark',
             },
           });
-
+          
+          
         return (
            <>
-            <div className='logo'>  
-                              <img src={logo} alt='website logo'/>
-            </div>
+           <div className={classes.outwards}>
+        
             <div className={classes.container}>
+            <div className={classes.logo}>  
+           <img src={logo} alt='website logo'/>
+            </div>
                 {/* <h2 className={classes.h2} > Upload the data to the server</h2> */}
                 <TableContainer  className={classes.tableContainer} component={Paper}>
                     <form onSubmit={this.handleSubmit}>
@@ -230,17 +240,26 @@ class Admin extends React.Component {
                     </form>
                 </TableContainer>
             </div>
+            </div>
     </>
         );
     }
 }
 
 const styles = {
+    Adminlogo1: {
+        marginRight: '200',
+    },
+    outwards: {
+        position: 'absolute',
+        backgroundColor: '#1b262c',
+        height: "100%",
+        width: '100%',
+    },
     container: {
         height: "100%",
-        // backgroundColor: '#1b262c',
         marginBottom: 16,
-        marginTop: 10,
+        marginTop: 60,
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center'
