@@ -12,8 +12,8 @@ import './AddData.module.css'
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
+import { useHistory } from 'react-router-dom'
 import logo from './logo.png';
-
 
 
 
@@ -58,6 +58,7 @@ class Admin extends React.Component {
             
 
     }
+    
 
     
     render() {
@@ -67,6 +68,7 @@ class Admin extends React.Component {
               type: 'dark',
             },
           });
+
           
           
         return (
@@ -178,33 +180,42 @@ class Admin extends React.Component {
           <option>Documentaries</option>
         </Select>
       </FormControl>
-                                     {/* type="text" */}
-                                        {/* onChange={this.handleChange}
-                                        variant='filled'
-                                        required
-                                        id="genres"
-                                        name="genres"
-                                        label="Genres"
-                                        fullWidth
-                                        autoComplete="genres"
-                                    />  */}
+                                
                                 </TableCell>
                             </TableRow>
                             <TableRow>
-                                {/* <TableCell className={classes.boldText}>Category</TableCell> */}
-                                {/* <TableCell>
+                                 <TableCell className={classes.boldText}>Rating</TableCell> 
+                                 <TableCell>
                                     <TextField type="text"
                                         onChange={this.handleChange}
                                         variant='filled'
                                         required
                                         id="category"
                                         name="category"
-                                        label="Category"
+                                        label="Rating"
                                         fullWidth
-                                        autoComplete="category"
                                     />
-                                </TableCell> */}
+                                </TableCell> 
                             </TableRow>
+                            <TableCell className={classes.boldText}>Language</TableCell>
+                                <TableCell>
+                                <FormControl variant="filled" className={classes.formControl}>
+        <InputLabel htmlFor="filled-age-native-simple">Language</InputLabel>
+        <Select
+          native
+        //   onChange={handleChange}
+          inputProps={{
+          }}
+        >
+          <option aria-label="None" value="" />
+          <option>Arabic</option>
+          <option>English</option>
+          <option>Other</option>
+        </Select>
+      </FormControl>
+                                
+                                </TableCell>
+                            
 
                             <TableRow>
                                 <TableCell className={classes.boldText} > Description</TableCell>
@@ -246,9 +257,11 @@ class Admin extends React.Component {
     }
 }
 
+
+
 const styles = {
     Adminlogo1: {
-        marginRight: '200',
+        // marginRight: '200',
     },
     outwards: {
         position: 'absolute',
@@ -258,8 +271,10 @@ const styles = {
     },
     container: {
         height: "100%",
+        width: '100%',
+        position: 'absolute',
         marginBottom: 16,
-        marginTop: 60,
+        // marginTop: 60,
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center'
@@ -280,4 +295,5 @@ const styles = {
     }
     
 }
+
 export default withStyles(styles)(Admin);

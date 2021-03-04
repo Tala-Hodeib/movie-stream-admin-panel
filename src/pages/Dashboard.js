@@ -20,7 +20,7 @@ function logout() {
         <button className='logout-btn' onClick={()=>logout()}>
             Logout
         </button>
-        <button className='add-btn' onClick = {()=> history.push('/admin')}>Add</button>
+        <button className='add-btn' onClick = {()=> history.push('/admin')}><span>Add</span></button>
         </div>
     </div>
     </div>
